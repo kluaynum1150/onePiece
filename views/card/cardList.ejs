@@ -1,0 +1,20 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <div class="jumbotron" style="text-align: center;">
+        <h1>Bounty leaflet of One Piece</h1>
+        <p>Show Bounty leaflet of One Piece</p>
+        <a class="btn btn-primary" href="/BountyLeaflet/new" role="button">Add New</a>
+    </div>
+<div class ="row" style="display: flex; flex-wrap: wrap;">
+    <% card.forEach(function(card){ %>
+        <div class="col-md-4 col-sm-6">
+            <div class = "img-thumbnail">
+                <h3 style="text-align: center;"><%= card.name%></h3>
+                <center><img src = <%= "../uploads/" + card.imgurl %> class="img-fluid img-thumbnail" style="height: 500px; width: auto;"></center>
+                <center><a class="btn btn-primary" href="/BountyLeaflet/<%= card._id%>" role="button">more</a></center>
+            </div>
+        </div>
+    <% }); %>
+</div>
+</div>
+<%- include("../partials/footer") %>

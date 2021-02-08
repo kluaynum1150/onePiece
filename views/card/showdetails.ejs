@@ -1,0 +1,38 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <div class="jumbotron" style="text-align: center;">
+        <div  style="display:inline-block">
+            <img src = <%= "../uploads/" + card.imgurl %> class="img-fluid img-thumbnail" style="height: 500px; width: auto;">
+        </div>
+        <div  style="display:inline-block">
+            <h3 style="text-align: left;">ชื่อ : <%= card.name%></h3>
+            <h3 style="text-align: left;">ฉายา : <%= card.decs1%></h3>
+            <h3 style="text-align: left;">ค่าหัว : <%= card.decs2%></h3>
+            <h3 style="text-align: left;">สร้างโดย : <%= card.author.username%></h3>
+            <% if(currentUser && card.author.id.equals(currentUser._id)){ %>
+            <a class="btn btn-warning" href="/BountyLeaflet/<%= card._id%>/edit">Edit</a>
+            <form style="display: inline;" action="/BountyLeaflet/<%= card._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            <% } %>
+        </div>
+        <hr>
+        <h3>Comments</h3>
+        <hr>
+        <% card.comment.forEach(function(comment){ %>
+            <div>
+                <p style="display: inline;"><strong><%= comment.author.username %></strong> - <%= comment.text %></p>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-warning" href="/BountyLeaflet/<%= card._id%>/comment/<%= comment._id%>/edit">Edit</a>
+                    <form style="display: inline;" action="/BountyLeaflet/<%= card._id%>/comment/<%= comment._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                <% } %>
+            </div>
+            <br>
+        <% }) %>
+        <br>
+        <a class="btn btn-primary" href="/BountyLeaflet/<%= card._id%>/comment/new">Add new comment</a>
+    </div>
+</div>
+<%- include("../partials/footer") %>

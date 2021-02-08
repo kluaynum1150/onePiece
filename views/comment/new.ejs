@@ -1,0 +1,12 @@
+<%- include("../partials/header") %>
+<div class="container" style="width: 35%;margin: 25px auto;">
+    <h2 style="text-align: center;">Create a new comment</h2>
+    <form action="/BountyLeaflet/<%= card._id%>/comment" method="POST">
+        <div class="form-group">
+            <label for="commentText">comment</label>
+            <input type="text" class="form-control" name="comment[text]" placeholder="Your comment here">
+        </div>
+        <button type="submit" class="btn btn-primary" style="float: right;">Submit</button>
+    </form>
+</div>
+<%- include("../partials/footer") %>

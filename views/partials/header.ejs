@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>One Piece</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">One Piece</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/BountyLeaflet">Bounty leaflet</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/BountyLeaflet/new">Add new</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <form action="/login" method="POST">
+                <% if(!currentUser){ %>
+                  <input type="text" name="username" placeholder="username">
+                  <input type="password" name="password" placeholder="password">
+                  <button>login</button>
+                  or <a href="/signup">Sign Up!!</a>
+                <% } else{ %>
+                  Welcome, You logged as <%= currentUser.username%>
+                  <a href="/logout">Log out</a>
+                <% } %>
+              </form>
+            </div>
+        </nav>
+
+        <div class='container'>
+          <% if (error && error.length > 0) { %>
+            <div class="alert alert-danger" role="alert">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if (success && success.length > 0) { %>
+            <div class="alert alert-success" role="alert">
+              <%= success %>
+            </div>
+          <% } %>
+        </div>
